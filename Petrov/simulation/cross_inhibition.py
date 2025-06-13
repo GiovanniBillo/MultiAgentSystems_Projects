@@ -41,9 +41,13 @@ def plot_trajectories(trajectories, T_ave, X_ave, Y_ave, U_ave):
 
 def run_cross_inhibition_simulation(
     cycles=100, Tmax=50, N=100, Nhalf=None, m=50, d=10, h=40,
-    Zx=0.1*N, Zy=, qx=None, qy=None, initial_state=None,
+    Zx=None, Zy=None, qx=None, qy=None, initial_state=None,
     ave_steps=200, plot=False, print_params=True):
 
+    if Zx is None:
+        Zx = 0.1*N
+    if Zy is None:
+        Zy = 0.1*N
     if Nhalf is None:
         Nhalf = N // 2
     if qx is None:
