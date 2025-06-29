@@ -32,7 +32,7 @@ initial_endowment_1 = frozenset(goods[:even_split])
 initial_endowment_2 = frozenset(goods[even_split:])  
 initial_endowment = (initial_endowment_1, initial_endowment_2)
 
-print(f"INITIAL GOOD ENDOWMENTS: Agent 1 has{initial_endowment_1}, Agent 2 has {initial_endowment_2}")
+print(f"INITIAL GOOD ENDOWMENTS: Agent 1 has {initial_endowment_1}, Agent 2 has {initial_endowment_2}")
 
 
 
@@ -136,13 +136,17 @@ def BnB_DFS():
     return CB
 
 def MCB(theta, CB):
-    valid_outcomes = []
-    for o in CB:
-        if all(u(theta, o) >= u(theta, x) for x in CB):
-            valid_outcomes.append(o)
-    if not valid_outcomes:
+    if not CB:
         return None
-    return max(valid_outcomes, key=g)
+    
+    # Find the outcome that agent 2 prefers most among all outcomes in CB
+    best_outcome = max(CB, key=lambda o: u(theta, o))
+    
+    # Check if the best outcome gives non-negative utility to agent 2
+    if u(theta, best_outcome) >= 0:
+        return best_outcome
+    else:
+        return None
 
 CB_result = BnB_DFS()
 if args.debug: print("CB_result:", CB_result)
@@ -150,25 +154,41 @@ if args.debug: print("CB_result:", CB_result)
 
 from itertools import product
 
-def generate_misreports(theta, goods, value_range=(1, 5)):
+def generate_misreports(theta, goods, value_range=(1, 5), max_misreports=1000):
     misreports = []
     
-    base_preferences = {good: theta.get(frozenset({good}), 0) for good in goods}
-
+    # Calculate total possible misreports
+    total_possible = (value_range[1] - value_range[0] + 1) ** len(goods)
     
-    value_combinations = product(range(value_range[0], value_range[1] + 1), repeat=len(goods))
+    if total_possible > max_misreports:
+        print(f"Warning: {total_possible} possible misreports would be generated. Limiting to {max_misreports} for performance.")
+        # Generate a subset of misreports instead of all
+        for _ in range(max_misreports):
+            values = [random.randint(value_range[0], value_range[1]) for _ in range(len(goods))]
+            misreported_preference = {frozenset({goods[i]}): values[i] for i in range(len(goods))}
+            
+            misreported_theta = {}
+            for subset in all_subsets:
+                subset_utility = sum(misreported_preference.get(frozenset({good}), 0) for good in subset)
+                misreported_theta[frozenset(subset)] = subset_utility
+            
+            misreports.append(misreported_theta)
+    else:
+        # Generate all possible value combinations for individual goods
+        value_combinations = product(range(value_range[0], value_range[1] + 1), repeat=len(goods))
 
-    for values in value_combinations:
-        
-        misreported_preference = {frozenset({goods[i]}): values[i] for i in range(len(goods))}
+        for values in value_combinations:
+            # Create misreported preference for individual goods
+            misreported_preference = {frozenset({goods[i]}): values[i] for i in range(len(goods))}
 
-        
-        misreported_theta = {}
-        for subset in all_subsets:
-            subset_utility = sum(misreported_preference.get(frozenset({good}), 0) for good in subset)
-            misreported_theta[frozenset(subset)] = subset_utility
+            # Create misreported theta by summing individual good preferences
+            misreported_theta = {}
+            for subset in all_subsets:
+                subset_utility = sum(misreported_preference.get(frozenset({good}), 0) for good in subset)
+                misreported_theta[frozenset(subset)] = subset_utility
 
-        misreports.append(misreported_theta)
+            misreports.append(misreported_theta)
+    
     return misreports
 
 def verify_truthfulness(true_theta, chosen_outcome, goods, CB_result):
@@ -202,12 +222,14 @@ if args.debug:
 
 for i, theta in enumerate(theta_2_list):
     chosen_outcome = MCB(theta, CB_result)
-    print(f"\nChosen outcome for θ[{i})]:")
+    print(f"\nChosen outcome for θ[{i}]:")
     if chosen_outcome:
-            print("  Agent 1 gets:", set(chosen_outcome[0]))
-            print("  Agent 2 gets:", set(chosen_outcome[1]))
-            if args.debug:
-                print("  Agent 1 utility (g):", g(chosen_outcome))
-                print("  Agent 2 utility (u):", u(theta, chosen_outcome))
-                print(f"  Agent 1 had {initial_endowment_1} with utility {g(initial_endowment)} initially (actual initial goods valuation: {theta_1.get(initial_endowment[0])}),  \n Agent 2 had {initial_endowment_2} with utility {u(theta, initial_endowment)} (actual initial goods valuation: {theta.get(initial_endowment[1])})")
-    verify_truthfulness(theta, chosen_outcome, goods, CB_result)
+        print("  Agent 1 gets:", set(chosen_outcome[0]))
+        print("  Agent 2 gets:", set(chosen_outcome[1]))
+        if args.debug:
+            print("  Agent 1 utility (g):", g(chosen_outcome))
+            print("  Agent 2 utility (u):", u(theta, chosen_outcome))
+            print(f"  Agent 1 had {initial_endowment_1} with utility {g(initial_endowment)} initially (actual initial goods valuation: {theta_1.get(initial_endowment[0])}),  \n Agent 2 had {initial_endowment_2} with utility {u(theta, initial_endowment)} (actual initial goods valuation: {theta.get(initial_endowment[1])})")
+        verify_truthfulness(theta, chosen_outcome, goods, CB_result)
+    else:
+        print("  No valid outcome found for this theta type.")
