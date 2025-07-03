@@ -1,0 +1,96 @@
+
+===== Experiment Log Started: 2025-06-14 17:46:13.996835 =====
+All parameters are defined in the src.config file.
+
+=== Running Experiment 1 ===
+Seed 42 - Single baseline run: {'robust_consensus_count': 45, 'robust_consensus_prob': 0.45}
+Seed 43 - Single baseline run: {'robust_consensus_count': 45, 'robust_consensus_prob': 0.45}
+Seed 44 - Single baseline run: {'robust_consensus_count': 45, 'robust_consensus_prob': 0.45}
+
+=== Running Experiment 2 ===
+Zealot % 0.00 - mean: 0.010, std: 0.000
+Zealot % 0.05 - mean: 0.650, std: 0.000
+Zealot % 0.15 - mean: 0.470, std: 0.000
+Zealot % 0.20 - mean: 0.360, std: 0.000
+Zealot % 0.30 - mean: 0.210, std: 0.000
+Zealot % 0.40 - mean: 0.010, std: 0.000
+Zealot % 0.45 - mean: 0.000, std: 0.000
+Zealot % 0.50 - mean: 0.000, std: 0.000
+
+=== Running Experiment 3 ===
+X Zealots % 0.00 - mean: 0.630, std: 0.000
+X Zealots % 0.05 - mean: 0.760, std: 0.000
+X Zealots % 0.15 - mean: 0.490, std: 0.000
+X Zealots % 0.20 - mean: 0.110, std: 0.000
+X Zealots % 0.30 - mean: 0.020, std: 0.000
+X Zealots % 0.40 - mean: 0.000, std: 0.000
+X Zealots % 0.45 - mean: 0.000, std: 0.000
+X Zealots % 0.50 - mean: 0.000, std: 0.000
+
+=== Running Experiment 4 ===
+Y Zealots % 0.00 - mean: 0.600, std: 0.000
+Y Zealots % 0.05 - mean: 0.710, std: 0.000
+Y Zealots % 0.15 - mean: 0.250, std: 0.000
+Y Zealots % 0.20 - mean: 0.960, std: 0.000
+Y Zealots % 0.30 - mean: 1.000, std: 0.000
+Y Zealots % 0.40 - mean: 1.000, std: 0.000
+Y Zealots % 0.45 - mean: 0.990, std: 0.000
+Y Zealots % 0.50 - mean: 0.000, std: 0.000
+
+=== Running Experiment 5 ===
+Group size 10 - mean: 0.000, std: 0.000
+Group size 20 - mean: 0.000, std: 0.000
+Group size 50 - mean: 0.000, std: 0.000
+Group size 100 - mean: 0.450, std: 0.000
+Group size 200 - mean: 0.900, std: 0.000
+Group size 500 - mean: 0.990, std: 0.000
+Group size 1000 - mean: 1.000, std: 0.000
+
+=== Running Experiment 6 ===
+Small group size 10 (10% zealots) - mean: 0.000, std: 0.000
+Small group size 20 (10% zealots) - mean: 0.000, std: 0.000
+Small group size 50 (10% zealots) - mean: 0.000, std: 0.000
+Small group size 80 (10% zealots) - mean: 0.270, std: 0.000
+Small group size 90 (10% zealots) - mean: 0.390, std: 0.000
+Small group size 100 (10% zealots) - mean: 0.450, std: 0.000
+===== Experiment Log Ended: 2025-06-14 17:59:30.132399 =====
+
+
+===== Experiment Log Started: 2025-06-18 17:09:27.830390 =====
+All parameters are defined in the src.config file.
+
+=== Running Experiment 1 ===
+Seed 42 - Single baseline run: {'robust_consensus_count': 45, 'robust_consensus_prob': 0.45}
+Seed 43 - Single baseline run: {'robust_consensus_count': 45, 'robust_consensus_prob': 0.45}
+Seed 44 - Single baseline run: {'robust_consensus_count': 45, 'robust_consensus_prob': 0.45}
+===== Experiment Log Ended: 2025-06-18 17:09:56.156419 =====
+
+
+===== Experiment Log Started: 2025-06-18 17:13:25.478415 =====
+All parameters are defined in the src.config file.
+
+=== Running Experiment 2 ===
+Zealot % 0.00 - mean: 0.010, std: 0.000
+Zealot % 0.05 - mean: 0.650, std: 0.000
+Zealot % 0.15 - mean: 0.470, std: 0.000
+Zealot % 0.20 - mean: 0.360, std: 0.000
+Zealot % 0.30 - mean: 0.210, std: 0.000
+Zealot % 0.40 - mean: 0.010, std: 0.000
+Zealot % 0.45 - mean: 0.000, std: 0.000
+Zealot % 0.50 - mean: 0.000, std: 0.000
+===== Experiment Log Ended: 2025-06-18 17:14:50.317653 =====
+
+
+===== Experiment Log Started: 2025-06-18 17:17:28.545595 =====
+All parameters are defined in the src.config file.
+
+=== Running Experiment 5 ===
+Group size 10 - mean: 0.000, std: 0.000
+Group size 20 - mean: 0.000, std: 0.000
+Group size 50 - mean: 0.000, std: 0.000
+Group size 100 - mean: 0.450, std: 0.000
+Group size 200 - mean: 0.900, std: 0.000
+Group size 500 - mean: 0.990, std: 0.000
+Group size 1000 - mean: 1.000, std: 0.000
+===== Experiment Log Ended: 2025-06-18 17:25:32.408555 =====
+

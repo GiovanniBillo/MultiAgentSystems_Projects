@@ -1,0 +1,4 @@
+# Ignore everything in the folder
+Petrov/*
+# Except the file you want to keep
+!Petrov/CTMC_Swarm_Consensus_Project.ipynb

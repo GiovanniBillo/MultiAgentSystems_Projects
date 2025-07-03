@@ -23,7 +23,7 @@ The goal is to **maximize Agent 1's expected utility** by selecting a subset of 
 
 ## 📁 File Description
 
-- `automatedmechanismdesign_finalfixed.py` — main implementation file.
+- `automatedmechanismdesign.py` — main implementation file.
   - Generates the set of goods and all possible allocations (outcomes).
   - Samples preference types for Agent 2 and one fixed profile for Agent 1.
   - Implements:
@@ -32,7 +32,6 @@ The goal is to **maximize Agent 1's expected utility** by selecting a subset of 
     - Core BnB-DFS algorithm (`SEARCH1`, `BnB_DFS`)
     - Mechanism extraction `MCB()`
     - Truthfulness verification utilities
-
 ---
 
 ## 🧪 Experiments
