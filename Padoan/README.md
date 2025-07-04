@@ -48,6 +48,9 @@ You can change:
 - `NUM_GOODS` (default: 2 or 6)
 - `NUM_THETA` (default: 15 or 50)
 - Value assignment ranges for goods (default: 1–5)
-
-For larger values (e.g., 6 goods and 50 thetas), computation may be expensive.
+by passing the arguments directly in the command line, e.g:
+```python
+python3 automatedmechanismdesign.py --num_goods=6 --num_theta=50
+```
+Note that, for larger values, computation may be expensive.
 
